@@ -129,10 +129,84 @@ para traer archivos a este estado se debe hacer
  git restore --staged archivo : "para sacar un archivo estado stage area para 
  ```
 
-### REPOSITORIO LOCAL (cONFIRMADO)
+### REPOSITORIO LOCAL (CONFIRMADO)
 Es la ultima fase donde le decimos al repositorio que cree el punto de guardado para que todos los cambios que estan en staged pasen a ser parte del historial.
 ```bash
  git commit -m "mensaje"
  git reset --soft HEAD~1 : si quieres deshacer el ultimmo commit
 ```
 ![Flujo GIT](imagenes/animacion_git.png)
+
+### BUENAS PRACTICAS
+#### ¿Cada cuanto debo hacer un commit?
+Los commits atómicos son una práctica en Git donde cada commit representa un único cambio pequeño, unico y completo. Es lo contrario a hacer un solo commit grande con muchos cambios, se divide el trabajo en partes pequeñas
+
+Cada commit resuelve una sola cosa, ser entendible por si mismo, mantener el proyecto en estado funcional
+
+### Escribe buenos commits
+Un commit debe de describir lo  que hace en pocas palabras y de manera simple pero efectiva:
+#### 1. USA VERBOS IMPERATIVOS
+
+Add: Significa que se agrega un nuevo archivo
+
+Change: Significa que se modifica un archivo existente
+
+Fix: Significa que se arregla un bug
+
+Remove: Significa que seelimina un archivo existente
+
+#### 2. NO USES PUNTO FINAL NI PUNTOS SUSPENSIVOS EN TUS MENSAJES
+Usar puntuación mas alla de una coma es innecesario a la hora de hacer un buen commit
+```bash
+git commit -m “Add new search feature.”  MAL. No uses punto final
+
+git commit -m “Fix a problem with topbar..” MAL. No uses puntos suspensivos
+
+git commit -m “Change the default system color” BIEN
+```
+
+#### 3. USA COMO MAXIMO 50 CARACTERES
+Se corto y conciso con tus commits, evitando explicar mucho en un solo commit, siiendo una buena practica separarlo en diferentes commits 
+
+
+#### 4. USA PREFIJOS PARA TUS COMMITS PARA HACERLO MAS SEMANTICO 
+Para que el historial sea legible y se sepa mas facilmente lo que se hace se usa este tipo de commits:
+
+ ```git commit -m "tipo de commit:descripcion" ```
+
+
+ ```git commit -m "feat: add search feature" ```
+
+```Prefijos```:
+
+```feat: para una nueva característica para el usuario.```
+
+```fix: para un bug que afecta al usuario.```
+
+```perf: para cambios que mejoran el rendimiento del sitio.```
+
+```build: para cambios en el sistema de build, tareas de despliegue o instalación.```
+
+```ci: para cambios en la integración continua.```
+
+```docs: para cambios en la documentación.```
+
+```refactor: para refactorización del código como cambios de nombre de variables o funciones.```
+
+```style: para cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario```
+
+```test: para tests o refactorización de uno ya existente.```
+
+
+#### 5. AÑADE TODO EL CONTEXTO QUE SEA NECESARIO EN EL CUERPO DEL COMMIT
+A veces un commit no se puede explicar bien con una sola frase. En esos casos, en vez de hacer el título muy largo o confuso, se añade información extra en el cuerpo del mensaje del commit.
+
+Con git commit, la primera línea se usa como título corto y claro, y a partir de la segunda línea se escribe la explicación detallada. En esta parte sí se pueden usar reglas normales de escritura, como puntos y comas, porque sirve para dar contexto más completo del cambio.
+
+La idea es mantener el título simple, y usar el cuerpo solo cuando realmente haga falta explicar mejor qué se hizo o por qué se hizo.
+
+git commit 
+
+prefijo:Titulo de tu commit 
+
+Cuerpo que describe tu commit
