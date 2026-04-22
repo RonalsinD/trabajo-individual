@@ -74,3 +74,65 @@ tanto README.md y .gitignore se usan siempre juntos, porque cumple funciones com
 README.md `Explica el proyecto`
 
 .gitignore `Mantener limpio el repositorio`
+
+
+
+## Clase 2
+
+### STATES Y COMMITS
+Un resumen breve de estos dos conceptos seria que states(estados en Git), son las etapas por las que pasa un archivo de un Git, `Directorio de Trabajo`: La carpeta local, donde estamos trabajando, pero Git aun no lo tiene registrado, `Stage Area`: El area de espera donde todo esta lsito para guardarse, `Repositorio local`: archivo guardado en el historial del repositorio.
+
+Commit(buenas practicas) seria un modo convencional para escribir mensajes de commit claros, estructurados y consistentes, de modo que el historial del proyecto sea facil de entender y automatizar.
+
+
+![Ciclo de GIT](imagenes/Git-Life-Cycle.webp)
+
+```Bash
+Directorio de Trabajo: 
+  ⮟
+  Creo,modifico o elimino los ficheros
+  ⮟
+  Preparo los cambios que quiero grabar
+  ⮟
+Area Temporal Transitoria(Stage Area)
+  ⮟
+  Confirmo los cambios y los grabo en el repositorio
+  ⮟
+Repositorio Local
+  ⮟
+  Sincronizo los cambios con el repositorio en el servidor
+  ⮟
+Repositorio Remoto
+```
+### DIRECTORIO DE TRABAJO (MODIFICADO)
+Es smplemente una carpeta comun, con la unica diferencia que Git observa tus archivos, y los cataloga en:
+
+`Untracked`: Archivo nuevo de Git o esta en seguimiento
+
+`Modified`: Archivo que ya existe en Git, pero fue modificado
+
+cuando un archivo no esta en el `.gitignore` pasa automaticamente a uno de estos estados
+
+#### git restore archivo
+Borra fisicamente lo que escribieron haciendo que tu archivo vuelva asu estado de ultimo commit, asi que mucho cuidado con este comando.
+
+#### touch .gitignore
+Crea una carpeta destinada para archivos, cuando tienes este archivo no se sube al repositorio, no existira para otros, no se vera todo lo que este en el .gitigore, no se vera nada de lo que contenga en el gitignore en platafirmas como GIT HUB.
+
+### STAGE AREA (PREPARADO)
+Nos permite seleccionar archivos modificados que es incluiran en el siguiente commit(guardado) y cuales no.
+para traer archivos a este estado se debe hacer 
+ 
+ ```Bash
+ git add archivo : "agrega el archivo name_archivo, lo hace uno por uno"
+ git add . : "agrega todos los archivos que esten obserbados por Git"
+ git restore --staged archivo : "para sacar un archivo estado stage area para 
+ ```
+
+### REPOSITORIO LOCAL (cONFIRMADO)
+Es la ultima fase donde le decimos al repositorio que cree el punto de guardado para que todos los cambios que estan en staged pasen a ser parte del historial.
+```bash
+ git commit -m "mensaje"
+ git reset --soft HEAD~1 : si quieres deshacer el ultimmo commit
+```
+![Flujo GIT](imagenes/animacion_git.png)
