@@ -146,14 +146,15 @@ Cada commit resuelve una sola cosa, ser entendible por si mismo, mantener el pro
 ### Escribe buenos commits
 Un commit debe de describir lo  que hace en pocas palabras y de manera simple pero efectiva:
 #### 1. USA VERBOS IMPERATIVOS
+```bash
+Add: "Significa que se agrega un nuevo archivo"
 
-Add: Significa que se agrega un nuevo archivo
+Change: "Significa que se modifica un archivo existente"
 
-Change: Significa que se modifica un archivo existente
+Fix: "Significa que se arregla un bug"
 
-Fix: Significa que se arregla un bug
-
-Remove: Significa que seelimina un archivo existente
+Remove: "Significa que seelimina un archivo existente"
+```
 
 #### 2. NO USES PUNTO FINAL NI PUNTOS SUSPENSIVOS EN TUS MENSAJES
 Usar puntuación mas alla de una coma es innecesario a la hora de hacer un buen commit
@@ -176,26 +177,27 @@ Para que el historial sea legible y se sepa mas facilmente lo que se hace se usa
 
 
  ```git commit -m "feat: add search feature" ```
+```bash
+Prefijos:
 
-```Prefijos```:
+feat: "para una nueva característica para el usuario."
 
-```feat: para una nueva característica para el usuario.```
+fix: "para un bug que afecta al usuario."
 
-```fix: para un bug que afecta al usuario.```
+perf: "para cambios que mejoran el rendimiento del sitio"
 
-```perf: para cambios que mejoran el rendimiento del sitio.```
+build: "para cambios en el sistema de build, tareas de despliegue o instalación"
 
-```build: para cambios en el sistema de build, tareas de despliegue o instalación.```
+ci: "para cambios en la integración continua"
 
-```ci: para cambios en la integración continua.```
+docs: "para cambios en la documentación"
 
-```docs: para cambios en la documentación.```
+refactor: "para refactorización del código como cambios de nombre de variables o funciones"
 
-```refactor: para refactorización del código como cambios de nombre de variables o funciones.```
+style: "para cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario"
 
-```style: para cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario```
-
-```test: para tests o refactorización de uno ya existente.```
+test: "para tests o refactorización de uno ya existente."
+```
 
 
 #### 5. AÑADE TODO EL CONTEXTO QUE SEA NECESARIO EN EL CUERPO DEL COMMIT
@@ -204,9 +206,158 @@ A veces un commit no se puede explicar bien con una sola frase. En esos casos, e
 Con git commit, la primera línea se usa como título corto y claro, y a partir de la segunda línea se escribe la explicación detallada. En esta parte sí se pueden usar reglas normales de escritura, como puntos y comas, porque sirve para dar contexto más completo del cambio.
 
 La idea es mantener el título simple, y usar el cuerpo solo cuando realmente haga falta explicar mejor qué se hizo o por qué se hizo.
-
+```bash
 git commit 
 
-prefijo:Titulo de tu commit 
+prefijo: "Titulo de tu commit "
 
-Cuerpo que describe tu commit
+Cuerpo "Describe tu commit"
+``` 
+
+![git_life_cycle](imagenes/git-life-cycle.png) 
+
+
+
+## Clase 3 
+  
+### GITHUB Y SSH {<Clase="3"/>}
+
+### ¿Que es GitHub?
+
+![GitHub](imagenes/github_logo.webp)
+
+Github es una plataforma en  la nube y red social para desarrolladores que permite alojar, gestionar y colaborar en proyectos de softeare utilizado Git, basiamente  Git es el repositorio locar y Github es el repositorio remoto.
+
+```bash
+Git:"herramienta local de contro de versiones(repositorio locar)"
+GitHub:"servicio de internet que usa Git para guardar repositorios(repositorio remoto"
+```
+![Git y GitHub](imagenes/git_github.webp))
+
+GitHub sirve para subir proyectos de programacion, colaborar con otras personas, revisar cambios hechos por diferentes usuarios, hacer copias de seguridad del codigo, mostrar proyectos (portafolio). 
+
+
+
+### SSH vs HTTPS
+
+![SSH y HTTPS](imagenes/ssh_https.png)
+
+#### HTTPS
+Cuando clonamos y queremos usar un repositorio con HTTPS, este nos pedira autenticarnos cada vez, hasta pidiendonos un token. Lo cual hace que sea cansino y molesto.
+
+#### SSH
+Configuramos en nuestra PC/Laptop ssh para comunicarnos con github, mediante una key la cual al ponerla en Github no necesitara pedirnos autenticarnos cada vez.
+
+Por tales inconvenientes con HTTPS  es mas recomemndable usar SSH KEY
+
+#### Configuracion SSH 
+
+![SSH](imagenes/ssh_key.png)
+
+<span style="color:orange">Por terminal ejecutamos los siguientes comandos desde tu terminal si estas en Linux o desde Git Bash si estas en Windows </span>
+
+```bash 
+ssh-keygen -t ed25519 -C “tu-correo@email.com”
+
+cat ~/.ssh/id_ed25519.pub
+
+ssh -T git@github.com
+```
+
+<span style="color:orange">Copias el contenido del anteroir comando y te diriges a github donde te diriges a tu perfil → Settings y luego SSH y GPG Keys y luego “New SSH Key” (1) y pegas tu key, le das un nombre para tu PC y click en “Add SSH Key</span>
+
+
+#### Crear un repositorio en GitHub
+
+![New Repository](imagenes/new_repositori.png)
+
+1.Vas a tu apartado de repositoriosen https://github.com/Tu-user? tab=repositories y Click en “New”
+
+2.Pones el nombre de tu repositorio, y si quieres una descripción. Y luego click en “Create Repository”
+
+#### Conectar un repositorio local de Git existente con uno en Github
+
+git remote add origin git@github.com:TuUser/TuRepo.git
+
+<span style="color:orange">Remote es la URL que apunta al servidor externo es decir a
+tu repositorio externo creado en Github y Origin es
+simplemente el apodo(nickname) que git le da por defecto a esa
+URL</span>
+
+git brach -M main 
+
+git push -u origin main
+
+```bash
+Primero debes de haber inicializado tu repositorio local (git init) y tener un commit inicial al menos 
+```
+
+git init
+
+git add .
+
+git commit -m "Initial commit"
+
+#### Clonar un repositorio de Git
+
+<span style="color:orange">Para la clonacion de un repositorio de git (repositorio local) debes:</span>
+```bash
+git clone “git@github.com:TuUser/TuRepo.git”
+```
+<span style="color:orange">Si por accidente lo hiciste con HTTPS</span>
+```bash
+git clone “https://github.com/TuUser/TuRepo.git”
+```
+<span style="color:orange">Usa este comando para cambiar el puntero de github y no te pida autenticación cada vez:</span>
+
+
+```bash
+git remote set-url origin “git@github.com:TuUser/TuRepo.git”
+```
+Este comando también se usa si quieres cambiar el
+repositorio remoto al cual esta conectado el repositorio
+
+<span style="color:orange">Si quieres ver a que repositorio remoto esta conectado tu repositorio:</span>
+```bash
+git remote -v
+```
+
+#### Cambios
+<span style="color:white">Subir cambios </span>
+
+```bash
+git push origin <rama>"
+```
+
+<span style="color:orange">git push </span>
+
+`"Empujar" mis commits.`
+<span style="color:orange">origin </span>
+
+`¿A dónde? Al servidor que apodamos "origin" (GitHub).`
+
+<span style="color:orange"> rama </span>
+
+`¿Qué rama? La rama <rama> de mi código.`
+
+<span style="color:white">bajar los cambios hechos</span>
+
+```bash
+git pull origin <rama>
+```
+
+<span style="color:orange">git pull </span>
+
+
+`"Traer" los commits del servidor. `
+
+<span style="color:orange">origin </span>
+
+
+`¿De dónde? Del servidor que apodamos "origin" (GitHub).`
+
+
+<span style="color:orange"> rama </span>
+
+
+`¿Qué rama? La rama <rama> de mi código.`
