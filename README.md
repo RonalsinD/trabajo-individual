@@ -332,6 +332,7 @@ git push origin <rama>"
 <span style="color:orange">git push </span>
 
 `"Empujar" mis commits.`
+
 <span style="color:orange">origin </span>
 
 `¿A dónde? Al servidor que apodamos "origin" (GitHub).`
@@ -346,12 +347,13 @@ git push origin <rama>"
 git pull origin <rama>
 ```
 
-<span style="color:orange">git pull </span>
+<span style="color:orange"> git pull </span>
 
 
-`"Traer" los commits del servidor. `
+`"Traer" los commits del servidor.`
 
-<span style="color:orange">origin </span>
+
+<span style="color:orange"> origin </span>
 
 
 `¿De dónde? Del servidor que apodamos "origin" (GitHub).`
@@ -361,3 +363,313 @@ git pull origin <rama>
 
 
 `¿Qué rama? La rama <rama> de mi código.`
+
+
+## Clase 4 
+### REMOTE, SSH MULTIPLE Y CHECKOUT 
+
+### GIT REMOTE 
+git remote es el comando que nos permite gestionar nuestras conexiones con los repositorio remotos, le dice a GIT local donde enviar o de donde traer la información, algunos comandos utiles son:
+
+git remote -v (Nos permite ver las URLs exactas donde
+apunta nuestro repositorio)
+git remote add <apodo> “url” (Vincula nuestro repo local
+con uno en la nube.)
+git remote set-url <apodo> “url” (Cambia la url donde
+apunta nuestro repositorio)
+
+### MULTIPLES SSH 
+Si tenemos mas de una cuenta de Github o necesitamos tener otras cuentas es util tener mas de una llave SSH, pues esta nos da acceso a cada cuenta, es un tunel, pero cada cuenta necesita su tunel para que estos no choquen.
+
+Es como tener una llave para cada puerta, una no abre la otra ¿no?, si una llave abre multiples puertas quiza deberiamos reconsiderar los cerrojos.
+
+### CONFIGURAR MULTIPLES SSH
+
+![SSH](imagenes/SSH.webp)
+
+Paso 1. Generamos el sshkey en conotro nombre:
+
+<span style="color:orange"> ssh-keygen -t ed25519 -C </span>
+
+<span style="color:orange"> "micorreo@gmail.com" -f ~/.ssh/id_miname </span>
+
+Paso 2. Creamos un archivo config para que no choquen las key
+```bash
+# Cuenta Personal (la de siempre)
+
+Host github.com
+
+HostName github.com
+
+User git
+
+IdentityFile ~/.ssh/id_ed25519 
+```
+```bash
+# Cuenta del otro correo
+Host github-miname
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_miname
+```
+```bash
+# Host:
+
+Es el apodo o alias que le pones a la conexión. Es lo que escribes en la terminal después de git@.
+
+# HostName:
+
+Es la dirección real del servidor a donde nos conectamos. Siempre será github.com
+
+# User:
+
+Es el nombre de usuario del sistema remoto. Para GitHub, siempre, siempre es git.
+
+# IdentityFile:
+
+Es la ruta exacta hacia la "escalera" (la llave privada) que quieres usar para ese Host específico.
+```
+
+Paso 3. Para verificar si funciona ejecutamos el comando:
+
+<span style="color:orange"> ssh -T git@github-miname </span>
+
+### CONFIGURACIONES LOCALES 
+Es decir por repositorio
+
+![local config](imagenes/configuraciones_locales.webp)
+
+Las configuraciones locales se imponen a las globales, y estas solo funcionan para el repositorio en el que se aplican. Para hacer configuraciones locales lo que se debe hacer es lo mismo que en las globales pero sin el flag --global:
+
+<span style="color:orange">git config user.name "Mi nuevo Name"</spam>
+
+<spam style="color:orange">git config user.email "micorreo@gmail.com"</spam>
+
+
+
+<h1 align="center" style="color:#2ecc71;">
+“NO TE OLVIDES HACER <br>
+GIT CLONE CON EL <br>
+HOST CORRECTO <br>
+PARA TU CUENTA”
+</h1>
+
+
+<p align="center">
+<code>git clone git@github-miname:usuario/repo.git</code>
+</p>
+
+### Git Checkout
+Es un comando de Git que se utiliza para cambiar el estado del repositorio a otro punto específico del historial. Esto normalmente implica moverse entre ramas, restaurar archivos o revisar versiones anteriores. permite cambiar la referencia actual (HEAD) hacia otra rama, commit o archivo, actualizando el contenido del directorio de trabajo para reflejar ese estado.
+
+![Git Checkout](imagenes/git_checkout.webp)
+
+ <span style="color:orange"> 1. cambiar de rama </span>
+
+ ```bash
+ git checkut nombre-rama
+ ```
+
+  <span style="color:orange"> 2. Crear y cambiar a una nueva rama</span>
+
+```bash
+git checkout -b nueva-rama
+```
+<span style="color:orange"> 3. Volver a un commit especifico </span>
+
+```bash
+git checkout <hash>
+```
+
+<span style="color:orange"> 4. Restaurar  archivos</span>
+
+```bash
+git checkout -- archivo.txt
+```
+
+### El Estado "Detached HEAD"
+Normalmente, el HEAD apunta a una Rama (que se mueve). En estado desacoplado, el HEAD apunta directamente a un Commit (que es fijo). En condiciones normales, HEAD apunta a una rama (por ejemplo, main), y esa rama apunta al último commit. Esto permite que cualquier nuevo commit avance la rama automáticamente.
+
+quiera decir que eres un esparctador en el pasado, puedes ver todo y escribir notas, pero no tienes cuerpo (rama), s te vas al presente sin "encarnar " en una rama tus cambios se pierden en el vacio.
+
+### ¿Cómo ir y volver de un commit?
+Para ir atras debes hacer: git checkout <hash_antiguo> y para volver al ultimo hash de la rama git checkout <rama>, significa moverse temporalmente a un punto específico del historial del proyecto para inspeccionarlo o probarlo. “Volver” implica regresar a la rama actual (como main) o al estado más reciente sin perder el flujo normal de trabajo.
+
+si hiciste algo aca (commiteaste) desaparece salvo que hagas 
+
+<span style="color:orange">git checkout <hash_commit_creado></span>
+
+<span style="color:orange">git checkout -b rama_nueva</span>
+
+<h2><span style="color:white"> Conceptos Clave</span></h2>
+
+<div>
+  <h3><span style="color:2EE6C6">HEAD</h3>
+  <p>
+    Apunta a la <strong>versión actual del proyecto</strong> en la que estás trabajando.
+    Generalmente referencia el último commit de la rama actual.
+  </p>
+</div>
+
+<div>
+  <h3><span style="color:2EE6C6">Branch (rama)</span></h3>
+  <p>
+    Es una <strong>línea de desarrollo independiente</strong>.
+    Permite trabajar en nuevas funcionalidades sin afectar la rama principal.
+  </p>
+</div>
+
+<div>
+  <h3><span style="color:2EE6C6">Working Directory</span></h3>
+  <p>
+    Son los <strong>archivos visibles en tu carpeta de trabajo</strong>.
+    Representan el estado actual que puedes modificar.
+  </p>
+</div>
+
+
+<h2>Buenas Prácticas del Checkout</h2>
+
+<div>
+  <h3> <span style="color:#2EE6C6">No trabajes mucho tiempo en 'detached HEAD'</span></h3>
+  <p>Si vas a escribir más de dos líneas, mejor crea una rama.</p>
+</div>
+
+<div>
+  <h3> <span style="color:#2EE6C6">Limpia tu directorio de trabajo</span></h3>
+  <p>Haz commit antes de moverte entre commits.</p>
+</div>
+
+<div>
+  <h3><span style="color:#2EE6C6"> Úsalo para aprender</span></h3>
+  <p>Explorar commits antiguos ayuda a entender proyectos grandes.</p>
+</div>
+
+## Clase 5 
+
+### RAMAS Y GITFLOW BÁSICO
+La base del traabajo remoto en equipo con GIT.
+
+¿QUÉ SON LAS RAMAS?
+Las ramas son una de las principales utilidades que disponemos en GIT para llevar un mejor control del código. Se trata de una bifurcación del estado del código que crea un nuevo camino de cara a la evolución del código, en paralelo a otras ramas que se puedan generar.
+
+Gracias a las ramas, es posible trabajar en nuevas funcionalidades, correcciones o pruebas sin modificar directamente la rama principal del proyecto. Cada rama evoluciona de manera independiente mediante commits propios y, posteriormente, los cambios pueden integrarse nuevamente al proyecto principal.
+
+Las ramas facilitan: 
+
+trabajo en equipo.
+
+la organizacion del desarrolo.
+
+la separacion de funcionalidades.
+
+la reguridad del codigo al evitar la version estable del proyecto.
+
+
+#### GIT BRANCH
+
+![GIT BRANCH](imagenes/git_branch.png)
+
+Git branch es un comando de Git que permite gestionar las ramas que tiene o tendrá un proyecto.
+Mediante este comando es posible crear, visualizar, renombrar o eliminar ramas, facilitando así la organización y el control del desarrollo del código.
+
+Las ramas permiten trabajar en diferentes funcionalidades o cambios de manera independiente, por lo que git branch se convierte en una herramienta fundamental para administrar esos distintos caminos de desarrollo dentro de un repositorio.
+
+git branch:
+```bash
+Listar las ramas disponibles: Muestra todas las ramas existentes del proyecto e indica en cuál estamos trabajando actualmente, es decir, la posición actual del HEAD
+```
+git branch <rama>:
+```bash
+Permite crear una nueva rama a partir de la rama en la que nos encontramos posicionados actualmente
+```
+git branch -D <rama>:
+```bash
+Eliminar ramas: También permite borrar ramas que ya no son necesarias dentro del proyecto.
+```
+#### GIT CHECKOUT ENFOCADO EN RAMAS
+
+Si bien el comando git checkout puede utilizarse para visualizar versiones anteriores del proyecto mediante commits, también puede trabajar junto con las ramas para realizar distintas acciones.
+
+git checkout <rama>
+```bash
+Permite movernos de una rama a otra dentro del repositorio.
+Para hacerlo correctamente, no debemos tener archivos en estado modified, untracked o staged, ya que podrían generarse conflictos o pérdida de cambios.
+```
+git checkout -b <rama>
+```bash
+Con una sola instrucción, git checkout permite crear una nueva rama y posicionarnos automáticamente en ella para comenzar a trabajar.
+```
+#### GIT CHECKOUT VS GIT SWITCH
+
+Originalmente, el comando git checkout estaba sobrecargado de funciones, ya que se utilizaba para: cambiar de ramas, moverse a commits antiguos (detached HEAD), y restaurar archivos.
+
+Debido a que realizaba muchas tareas diferentes, era común que los usuarios cometieran errores accidentalmente, especialmente entrando en estados de Detached HEAD.
+
+Por esta razón, en 2019 a partir de Git 2.23, se introdujo el comando git switch, cuyo objetivo fue separar la navegación entre ramas del resto de funcionalidades, haciendo el uso de Git más seguro, claro e intuitivo.
+
+git checkout: 
+
+![git checkout](imagenes/git_checkout.png)
+
+```bash
+Es un comando multipropósito y tradicional de Git.
+Permite trabajar con: ramas, commits, y archivos. Sin embargo, puede llevar fácilmente al estado Detached HEAD si no se utiliza correctamente.
+```
+git switch:
+
+![git switch](imagenes/git_switch.png)
+
+```bash
+Es un comando moderno y especializado únicamente en el manejo de ramas.
+Su función principal es: cambiar de rama, y crear ramas nuevas de forma más segura. Ayuda a evitar errores accidentales y simplifica el flujo de trabajo relacionado con ramas.
+```
+
+#### GITFLOW BÁSICO
+![GITFLOW](imagenes/gitflow.png.png)
+
+Un flujo de trabajo (workflow) en Git es un conjunto de reglas, prácticas y formas de organización que permiten trabajar de manera ordenada con las ramas de un proyecto. Este flujo define cómo se crean, utilizan y combinan las ramas, facilitando la gestión de versiones, el desarrollo de nuevas funcionalidades y la corrección de errores sin afectar el trabajo principal.
+
+Además, un workflow ayuda a que cualquier persona pueda adaptarse fácilmente al proyecto y colaborar de forma organizada, manteniendo una estructura clara dentro del repositorio. El uso de flujos de trabajo es especialmente útil en proyectos colaborativos, ya que mejora el control del código, la coordinación entre integrantes y la administración de los cambios realizados en el proyecto.
+
+#### ¿CÓMO FUNCIONA GITFLOW?
+
+![¿CÓMO FUNCIONA GITFLOW?](imagenes/funcionamiento_gitflow.png)
+
+main: 
+```bash
+Como siempre hasta ahora, tenemos nuestra rama main (o máster) la cual es la que tenemos por defecto al crear un repositorio de git, el propósito de esta rama es contener el código que se encuentra en producción.
+```
+developer:
+```bash
+Es la rama de “pre-producción”. Su propósito es tener las características que se están probando más todavía no han sido probadas y/o validadas del todo, pero que serán lanzadas a producción pronto. Es donde más trabajarán a lo largo de su proyecto.
+```
+Ramas de apoyo:
+```bash
+Son ramas que nos permitiran escribir nuestro codigo y estas pueden ser feature release y hotfix
+```
+
+#### RAMA DE APOYO
+
+Rama feature:
+```bash
+Las ramas feature se utilizan cuando se trabaja en una nueva funcionalidad o característica para el proyecto.
+Estas ramas se crean a partir de la rama develop, permitiendo desarrollar cambios de manera aislada sin afectar el código principal. Una vez finalizada la funcionalidad, la rama se fusiona nuevamente con develop y posteriormente puede eliminarse.
+Su objetivo principal es mantener organizado el desarrollo de nuevas características dentro del proyecto.
+```
+
+Rama release:
+```bash
+Las ramas release se utilizan para preparar el lanzamiento de una nueva versión del proyecto.
+En esta etapa normalmente se realizan pruebas, correcciones menores y procesos de control de calidad (QA). Estas ramas nacen desde develop y, una vez que la versión está lista, los cambios se fusionan hacia main y también hacia develop.
+Permiten estabilizar la versión antes de publicarla oficialmente.
+```
+Rama hotfix:
+```bash
+Las ramas hotfix se utilizan para solucionar problemas urgentes o errores encontrados en producción.
+Estas ramas deben crearse directamente desde main, ya que esta representa la versión estable del proyecto. No se crean desde develop porque dicha rama puede contener cambios aún inestables o en desarrollo.
+Una vez corregido el problema, la rama hotfix se fusiona nuevamente tanto en main como en develop, asegurando que la solución esté presente en ambas ramas.
+```
+
+RESUMIDO SERIA ...
+![class summary](imagenes/resumen.png.png)
