@@ -1,4 +1,4 @@
-# Trabajo Individual
+    n# Trabajo Individual
 
 Ronal Jancoña Paicho 
 
@@ -673,3 +673,105 @@ Una vez corregido el problema, la rama hotfix se fusiona nuevamente tanto en mai
 
 RESUMIDO SERIA ...
 ![class summary](imagenes/resumen.png.png)
+
+## Clase 6
+
+### Flujo de trabajo y sincronización de ramas en Git
+
+![git merge](imagenes/git-merge.webp)
+
+#### git merge 
+
+El comando git merge se utiliza para fusionar ramas. su objetivo es integrar los cambios realizados en una rama dentro de otra, esto permite que todos los commints formen parte de un  mismo historial de trabajo
+
+si una persona desarrolla una funcionalidad en una rama secundaria posteriormente puede unir esos cambios a la rama principal git 
+
+También se suele usar el flag --no-ff (no fast forward). Este evita que Git haga una fusión rápida que elimine evidencia visual de la existencia de la rama. En cambio, obliga a crear un commit de merge, conservando el historial completo del desarrollo y facilitando el seguimiento de cambios incluso si la rama original es eliminada.
+
+
+<span style="color:orange">git merge --no-off rama</span>
+
+#### git fetch
+
+El commando git fetch sirve para consultar y descargar información nueva del repositorio remoto sin modificar directamente los archivos locales del proyecto.
+
+Permite verificar si existen nuevos commits o cambios realizados por otros colaboradores en las ramas remotas. Es útil para mantenerse informado antes de actualizar el repositorio local
+
+<span style="color:orange">git fetch</span>
+
+
+#### git pull
+
+El comando git pull se utiliza para traer y actualizar automáticamente los cambios desde el repositorio remoto hacia la rama local actual
+
+Internamente, combina git fetch y git merge, ya que primero descarga los cambios y luego los fusiona con la rama local
+
+debes de epecificar el repositorio remoto (origin) y la rama para evitar errores
+
+<span style="color:orange">git pull origin develop</span>
+
+#### git push
+
+El comando git push permite subir los commits locales al repositorio remoto para compartir los cambios con otros integrantes del proyecto.
+
+También es recomendable especificar el repositorio remoto y la rama correspondiente.
+
+<span style="color:orange">git push origin rama</span>
+
+Cuando se sube una rama por primera vez, se utiliza el flag -u para vincular la rama local con la rama remota y evitar configuraciones posteriores 
+
+<span style="color:orange">git push -u origin rama</span>
+
+#### Flujo de trabajo sin Pull Request 
+
+1 Cambiar a la rama principal: <span style="color:orange">git checkout develop</span>
+
+2 Verificar cambios remotos: <span style="color:orange">git fetch</span>
+
+3 Actualizar la rama local: <span style="color:orange">git pull origin develop</span>
+
+4 Fusionar la rama de trabajo: <span style="color:orange">git merge --no-off rama</span>
+
+5 Resuelves manualmente los archivos fallidos y sus conflictos, si existen archivos incompatibles
+
+6 Agregar los archivos corregidos: <span style="color:orange">git add .</span>
+
+7 Crear el commit del merge: <span style="color:orange">git commit</span>
+
+8 Eliminar la rama ya utilizada: <span style="color:orange">git branch -D rama</span>
+
+9 Subir los cambios finales al repositorio remoto: <span style="color:orange">git push origin develop</span>
+
+#### Conflictos de Git
+
+Un conflicto ocurre cuando dos personas modifican la misma parte de un archivo y Git no puede decidir automáticamente qué cambio conservar.
+
+Esto suele suceder durante un git merge o git pull. En esos casos, Git marca los archivos con conflicto para que el usuario los revise manualmente.
+
+Después de corregir los conflictos, se debe ejecutar: <span style="color :orange">git commmit</span>
+
+para finalizar la fusion
+
+
+![](imagenes/where-conflicts.webp)
+
+#### Ramas 
+
+Una rama (branch) es una línea de desarrollo independiente dentro del proyecto. Permite trabajar en nuevas funcionalidades o correcciones sin afectar directamente la rama principal.
+
+main o master: <span style="color:#2EE6C6">rama principal</span>
+
+develop: <span style="color:#2EE6C6">rama de desarrollo</span>
+
+ramas secundarias: <sapn style="color:#2EE6C6">usadas para nuevas funciones o pruebas</span>
+
+
+```Crear ramas ayuda a mantener el proyecto organizado y facilita el trabajo en equipo```
+
+Crea una nueva rama, pero no cambia automáticamente hacia ella: <span style="color:#2EE6C6">git brach nueva-rama</span>
+
+Sirve para cambiarse a otra rama existente: <span style="color:#2EE6C6">git checkout nueva-rama</span>
+
+Crea la rama y cambia a ella: <span style="color:#2EE6C6">git checkout -b nueva-rama</span>
+
+Sirve para ver todas las ramas <sapn style="color:#2EE6C6">git branch</span>
