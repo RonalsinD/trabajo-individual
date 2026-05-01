@@ -1,4 +1,4 @@
-    n# Trabajo Individual
+# Trabajo Individual
 
 Ronal Jancoña Paicho 
 
