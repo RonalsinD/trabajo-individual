@@ -775,3 +775,328 @@ Sirve para cambiarse a otra rama existente: <span style="color:#2EE6C6">git chec
 Crea la rama y cambia a ella: <span style="color:#2EE6C6">git checkout -b nueva-rama</span>
 
 Sirve para ver todas las ramas <sapn style="color:#2EE6C6">git branch</span>
+
+
+## Clase 7
+### PULL RESQUEST
+
+![Pull Resquest logo](images/logo-resquest.png)
+
+#### ¿Qué son los Pull Request?
+
+Llamados tambien (PRs), es una forma profecional de trabajar con Git/GitHub, crea un resquest (pedido) en el grupo del repositorio en github que permite ver que cambios se quieren unir (mergear) al codigo basa existente
+
+El Pull Request (PR) se usa principalmente en equipos porque permite controlar y revisar cambios antes de integrarlos al proyecto principal.
+
+Pull Resquest :
+
+`Ver cambios linea por linea`
+
+`Comentar codigo`
+
+`Aprobar o requazar cambios`
+
+`Ejecutar revisiones (code review)`
+
+`Hacer el merge final`
+
+
+####  ¿Cómo crear un PR?
+
+Un Pull Request se crea en una plataforma como GitHub después de subir tu rama al repositorio remoto
+
+Requisitos previos:
+
+1 Una rama creada (feature/login)
+
+2 Cambios commiteados
+
+3 Rama subida a GitHub
+
+
+<span style="color:white">Pasos para crear un PR en GitHub:</span>
+
+
+1 Ir al repositorio en GitHub: [GitHub](https://github.com)
+
+2 GitHub detecta tu rama automaticamente veras un boton: <span style="color:orange">"Compare & pull resquest"</span>
+
+3 Abrir el Pull Resquest: debes completar, Base branch: <span style="color:orange">hacia dónde quieres unir (ej: develop), Compare branch: tu rama (ej: feature/login)</span>
+
+4 Escribir el titulo y descripcion: feat: <span style="color:orange">agregar login de usuario</span>
+
+5 Crear el Pull Resquest: <span style="color:orange">Create pull resquest</span>
+
+6 Revision del equipo: <span style="color:orange">desarroladores pueden comentar, pedir cambios, aprobar</span>
+
+7 Merge (unir cambios) : <span style="color:orange">si se aprueba, “Merge pull request”, tus cambios entran a develop o main</span>
+
+Buena explicacion del como hacer estos paso en: [Ver video en YouTube](https://youtu.be/4CeMKqloOJc)
+
+#### ¿Por qué usamos los PRs sí ya podemos trabajar normalmente sin ellos?
+
+![imagen Pull Resquest](images/pull-resquest.avif)
+
+Se usan por razones de seguridad y control del código. Permitir que cualquier colaborador haga merge directamente al repositorio principal sin revisión representa un riesgo, ya que podría introducir errores, código malicioso o cambios no deseados. Sin un proceso de revisión, no hay forma de validar qué código se está integrando ni de asegurar su calidad o intención.
+
+Los Pull Requests obligan al equipo a revisar los cambios antes de integrarlos. Esto no limita la colaboración, sino que la organiza, ya que promueve la revisión del código, el debate y la toma de decisiones sobre lo que se va a implementar. Permiten entender qué cambios se harán, quién los propone y quién los aprueba o rechaza, mejorando la coordinación y el control del repositorio en equipo.
+
+
+#### ¿Cómo proteger mi repositorio y limitar la colaboración?
+
+Ya conocemos la importancia de los Pull Requests, pero aún no hemos aplicado restricciones reales. Aunque confiemos en que los colaboradores esperen la revisión y aprobación antes de integrar su código, todavía tienen la capacidad de hacer cambios directamente si no se establecen controles.
+
+Para evitar esto, es necesario configurar reglas de protección en el repositorio, como restricciones de merge y requerir revisiones obligatorias antes de aceptar cambios, lo cual se explica en el siguiente video corto:
+
+Buena explicacion del como hacer estos paso en: [Ver video en YouTube](https://youtu.be/ZdLomug2-UQ)
+
+#### ¿Cómo colaboro al proyecto si no soy un colaborador invitado?
+
+Haces un fork del repositorio, trabajas en tu copia y luego envías un Pull Request (PR) al proyecto original. 
+
+#### ¿Cómo colaboro si no soy colaborador invitado?
+
+Haces un fork del repositorio, trabajas en tu copia y luego envías un **Pull Request (PR)** al proyecto original.
+
+<span style="color:white"> Pasos básicos:</sapn>
+
+1. Fork del repositorio
+2. Clonar tu fork
+3. Crear una rama
+4. Hacer cambios y commits
+5. Subir cambios a tu fork
+6. Abrir un Pull Request
+
+<span style="color:white">Idea clave:
+
+No modificas el repositorio original directamente, propones cambios mediante un PR para que sean revisados y aceptados.
+
+## Clase 8
+### 
+#### 1. ¿Qué pasa si aprobaron un PR que modificó lo mismo que yo?
+Escenario:
+
+
+otra persona hizo merge primero
+
+
+tú también modificaste esos archivos
+
+
+tu rama quedó desactualizada respecto a main
+
+
+Antes de traer cambios nuevos, se recomienda guardar temporalmente tu trabajo.
+
+#### 2. git stash
+Sirve para guardar cambios temporales sin hacer commit. 
+
+<span style="color:white">Guardar cambios</span>
+```bash
+git stash
+```
+guarda: 
+
+`archivos modificados`
+
+`staging`
+
+`estado temporal del trabajo`
+
+
+`Y limpia el directorio`
+
+<span style="color:white">Guardar con nombre:</span>
+```bash
+git stash -m "algo"
+```
+Ejemplo:
+
+`git stash -m "avance login"`
+
+<span style="color:white">Ver stashes guardados</span>
+```bash
+git stash list
+```
+Muestra algo como:
+
+`stash@{0}: On feature/login: avance login`
+
+<span style="color:white">Recuperar cambios guardados</span>
+```bash
+git stash pop
+```
+Hace:
+
+`recupera los cambios`
+
+`elimina ese stash de la lista`
+
+
+
+<span style="color:white">Flujo típico cuando otro PR fue mergeado
+git stashgit pull origin maingit stash pop
+Lógica:</span>
+
+
+`guardas tus cambios`
+
+`actualizas tu rama`
+
+`recuperas tu trabajo encima de lo nuevo`
+
+`Aquí pueden aparecer conflictos si ambos tocaron las mismas líneas`
+
+
+#### 3. Buena práctica: borrar ramas después del PR
+
+Después de mergear un Pull Request:
+
+`la rama ya cumplió su propósito`
+
+`conviene eliminarla`
+
+
+Ejemplo:
+
+<span style="color:orange">git branch -d feature/login</span>
+
+<span style="color:white">En remoto:</span>
+
+<span style="color:orange">git push origin --delete feature/login</span>
+
+<span style="color:white">Ventajas:</span>
+
+`repositorio limpio`
+
+`menos ramas viejas`
+
+`menos confusión`
+
+
+
+#### 4. git diff
+
+Sirve para ver diferencias o cambios.
+
+Ver cambios no staged
+
+<span style="color:orange">git diff</span>
+
+<span style="color:white">Muestra:</span>
+
+`cambios hechos`
+
+`pero NO agregados con git add`
+
+<span style="color:orange">git diff .</span>
+
+Similar, usando el directorio actual.
+
+Ver cambios de un archivo
+
+<span style="color:orange">git diff archivo</span>
+
+Ejemplo:
+
+<span style="color:orange">git diff README.md</span>
+
+Ver cambios staged
+
+<span style="color:white">git diff --staged</span>
+
+Muestra cambios que YA están en staging.
+
+<span style="color:white">git add .</span>
+
+Ver staged de un archivo específico
+
+<span style="color:orange">git diff --staged archivo</span>
+
+Ejemplo:
+
+<span style="color:orange">git diff --staged index.html</span>
+
+Comparar ramas
+
+<span style="color:orange">git diff rama1 rama2</span>
+
+Ejemplo:
+
+<span style="color:orange">git diff main feature/login</span>
+
+Sirve para ver:
+
+`qué cambió entre ramas`
+
+`qué agregaría un PR`
+
+
+#### Buenas Practicas
+
+`commits pequeños`
+
+`mensajes claros`
+
+`una responsabilidad por commit`
+
+`ramas por funcionalidad`
+
+`PRs para revisar código`
+
+<span style="color:white">Cada desarrollador:
+```bash
+crea rama
+```
+```bash
+trabaja
+```
+```bash
+hace commits claros
+```
+```bash
+push
+```
+```bash
+crea PR
+```
+```bash
+merge
+```
+```bash
+elimina rama
+```
+
+#### Buena práctica: borrar la rama después de hacer merge
+
+Consiste en eliminar una rama que ya fue integrada al proyecto principal (main o master) mediante un merge o Pull Request, porque su trabajo ya terminó y no necesita seguir existiendo.
+
+matener el repositorio:
+
+`limpio`
+
+`organizado`
+
+`facil de mantener`
+
+Crea una rama:
+
+feature/login 
+
+ahi se desarrolla el login, despues
+
+`1 se hace push`
+
+`2 se crea un PR`
+
+`3 el PR se aprueba` 
+
+`4 se mergea a main`
+
+en ese momento la rama ya cumplio su funcion, entonces se elimina
+
+<span style="color:orange">git branch -d feature/login</span>
+
+es una buena practica porque evita, ramas viejas acumuladas confusión sobre qué ramas siguen activas trabajo sobre código obsoleto desorden en equipos grandes, es una rama temporal de trabajo para desarrolar una funcionalidad, fix o mejora.
+
+<h1 align="center">FIN</h1>
