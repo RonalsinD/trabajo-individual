@@ -9,7 +9,7 @@ GitHub: RonalSinD
 ### ¿Qué es GIT?
 Es un Sistema de Control de  Versiones Distribuido (VCS) open source, creado poor Linus Torvalds en 2005.
 nos permite guardar archivos y las versiones de estos a lo largo del tiempo de manera local, guarda el historial de cambios de un proyecto, podemos volver atras si algo falla, trabajo en equipo sin perjudicar a ningun integrante ya que cada uno tiene una copia completa del repositorio, mantener diferentes verciones de un mismo proyecto `ramas`.
-![Logo de GIT](imagenes/Git_Logo.png)
+![Logo de GIT](images/Git_Logo.png)
 
 
 ### ¿Cómo nació GIT?
@@ -17,7 +17,7 @@ La creacion de GIT sucedio por varias razones de un mismo problema, porque en es
 
 Creo GIT en 2 a 3 semanas despues...
 
-![Creador de GIT](imagenes/linus_git.webp)
+![Creador de GIT](images/linus_git.webp)
 
 
 ### ¿Cómo instalar GIT?
@@ -25,15 +25,15 @@ Para instalar GIT debe de ir a su pagina web [Instalar GitHub](https://git-scm.c
 
 Linux:    [descarga](https://git-scm.com/install/linux)
 
-![Linux](imagenes/linux-logo.webp)
+![Linux](images/linux-logo.webp)
 
 macOS:    [descarga](https://git-scm.com/install/mac)
 
-![macOS](imagenes/macOS-Logo.webp)
+![macOS](images/macOS-Logo.webp)
 
 Windows:  [descarga](https://git-scm.com/install/windows).
 
-![Windows](imagenes/windows-log.webp)
+![Windows](images/windows-log.webp)
 
 GIT es multiplataforma, funciona de igual madera en deferentes Sistemas Operativos, lo unoco que cambia es la forma de instalarlo: como tengo Debian lo explicare, en la distro de Debian se deben de ejecutar los comandos:```sudo apt update``` y ```sudo apt install git``` asi de facil, una vez instalado GIT verifica con el comando ```git --version```
 
@@ -60,14 +60,14 @@ README.md es un archivo  de documentacion en formato Markdown(.md) esto describe
 #### README.md
 Es importante porque es lo primero que se ve en la plataforma de GITHUB, permite que otros entiendad tu proyecto sin leer codigo, mejora la presentacion y profecionalismo del repositorio.
 
-![README.md](imagenes/readme-imagen.webp)
+![README.md](images/readme-imagen.webp)
 
 
 
 #### .gitignore
 .gitignore es un archivo que le dice a Git qué archivos o carpetas NO debe rastrear (trackear), sirve para evitar subir cosas innecesarias o sencibles como archivos temporales(`.log`,`.tmp`), dependencias(`node_modules/`), archivos del sistema(.`DS_Store`,`Thumbs.db`), configuraciones locales, claves o contraseñas.
 
-![.gitignore](imagenes/gitignore.webp)
+![.gitignore](images/gitignore.webp)
 
 tanto README.md y .gitignore se usan siempre juntos, porque cumple funciones complementarias 
 
@@ -85,7 +85,7 @@ Un resumen breve de estos dos conceptos seria que states(estados en Git), son la
 Commit(buenas practicas) seria un modo convencional para escribir mensajes de commit claros, estructurados y consistentes, de modo que el historial del proyecto sea facil de entender y automatizar.
 
 
-![Ciclo de GIT](imagenes/Git-Life-Cycle.webp)
+![Ciclo de GIT](images/Git-Life-Cycle.webp)
 
 ```Bash
 Directorio de Trabajo: 
@@ -135,7 +135,7 @@ Es la ultima fase donde le decimos al repositorio que cree el punto de guardado 
  git commit -m "mensaje"
  git reset --soft HEAD~1 : si quieres deshacer el ultimmo commit
 ```
-![Flujo GIT](imagenes/animacion_git.png)
+![Flujo GIT](images/animacion_git.png)
 
 ### BUENAS PRACTICAS
 #### ¿Cada cuanto debo hacer un commit?
@@ -214,7 +214,7 @@ prefijo: "Titulo de tu commit "
 Cuerpo "Describe tu commit"
 ``` 
 
-![git_life_cycle](imagenes/git-life-cycle.png) 
+![git_life_cycle](images/git-life-cycle.png) 
 
 
 
@@ -224,7 +224,7 @@ Cuerpo "Describe tu commit"
 
 ### ¿Que es GitHub?
 
-![GitHub](imagenes/github_logo.webp)
+![GitHub](images/github_logo.webp)
 
 Github es una plataforma en  la nube y red social para desarrolladores que permite alojar, gestionar y colaborar en proyectos de softeare utilizado Git, basiamente  Git es el repositorio locar y Github es el repositorio remoto.
 
@@ -232,7 +232,7 @@ Github es una plataforma en  la nube y red social para desarrolladores que permi
 Git:"herramienta local de contro de versiones(repositorio locar)"
 GitHub:"servicio de internet que usa Git para guardar repositorios(repositorio remoto"
 ```
-![Git y GitHub](imagenes/git_github.webp))
+![Git y GitHub](images/git_github.webp))
 
 GitHub sirve para subir proyectos de programacion, colaborar con otras personas, revisar cambios hechos por diferentes usuarios, hacer copias de seguridad del codigo, mostrar proyectos (portafolio). 
 
@@ -240,7 +240,7 @@ GitHub sirve para subir proyectos de programacion, colaborar con otras personas,
 
 ### SSH vs HTTPS
 
-![SSH y HTTPS](imagenes/ssh_https.png)
+![SSH y HTTPS](images/ssh_https.png)
 
 #### HTTPS
 Cuando clonamos y queremos usar un repositorio con HTTPS, este nos pedira autenticarnos cada vez, hasta pidiendonos un token. Lo cual hace que sea cansino y molesto.
@@ -252,7 +252,7 @@ Por tales inconvenientes con HTTPS  es mas recomemndable usar SSH KEY
 
 #### Configuracion SSH 
 
-![SSH](imagenes/ssh_key.png)
+![SSH](images/ssh_key.png)
 
 <span style="color:orange">Por terminal ejecutamos los siguientes comandos desde tu terminal si estas en Linux o desde Git Bash si estas en Windows </span>
 
@@ -269,7 +269,7 @@ ssh -T git@github.com
 
 #### Crear un repositorio en GitHub
 
-![New Repository](imagenes/new_repositori.png)
+![New Repository](images/new_repositori.png)
 
 1.Vas a tu apartado de repositoriosen https://github.com/Tu-user? tab=repositories y Click en “New”
 
@@ -385,7 +385,7 @@ Es como tener una llave para cada puerta, una no abre la otra ¿no?, si una llav
 
 ### CONFIGURAR MULTIPLES SSH
 
-![SSH](imagenes/SSH.webp)
+![SSH](images/SSH.webp)
 
 Paso 1. Generamos el sshkey en conotro nombre:
 
@@ -437,7 +437,7 @@ Paso 3. Para verificar si funciona ejecutamos el comando:
 ### CONFIGURACIONES LOCALES 
 Es decir por repositorio
 
-![local config](imagenes/configuraciones_locales.webp)
+![local config](images/configuraciones_locales.webp)
 
 Las configuraciones locales se imponen a las globales, y estas solo funcionan para el repositorio en el que se aplican. Para hacer configuraciones locales lo que se debe hacer es lo mismo que en las globales pero sin el flag --global:
 
@@ -462,7 +462,7 @@ PARA TU CUENTA”
 ### Git Checkout
 Es un comando de Git que se utiliza para cambiar el estado del repositorio a otro punto específico del historial. Esto normalmente implica moverse entre ramas, restaurar archivos o revisar versiones anteriores. permite cambiar la referencia actual (HEAD) hacia otra rama, commit o archivo, actualizando el contenido del directorio de trabajo para reflejar ese estado.
 
-![Git Checkout](imagenes/git_checkout.webp)
+![Git Checkout](images/git_checkout.webp)
 
  <span style="color:orange"> 1. cambiar de rama </span>
 
@@ -568,7 +568,7 @@ la reguridad del codigo al evitar la version estable del proyecto.
 
 #### GIT BRANCH
 
-![GIT BRANCH](imagenes/git_branch.png)
+![GIT BRANCH](images/git_branch.png)
 
 Git branch es un comando de Git que permite gestionar las ramas que tiene o tendrá un proyecto.
 Mediante este comando es posible crear, visualizar, renombrar o eliminar ramas, facilitando así la organización y el control del desarrollo del código.
@@ -610,7 +610,7 @@ Por esta razón, en 2019 a partir de Git 2.23, se introdujo el comando git switc
 
 git checkout: 
 
-![git checkout](imagenes/git_checkout.png)
+![git checkout](images/git_checkout.png)
 
 ```bash
 Es un comando multipropósito y tradicional de Git.
@@ -618,7 +618,7 @@ Permite trabajar con: ramas, commits, y archivos. Sin embargo, puede llevar fác
 ```
 git switch:
 
-![git switch](imagenes/git_switch.png)
+![git switch](images/git_switch.png)
 
 ```bash
 Es un comando moderno y especializado únicamente en el manejo de ramas.
@@ -626,7 +626,7 @@ Su función principal es: cambiar de rama, y crear ramas nuevas de forma más se
 ```
 
 #### GITFLOW BÁSICO
-![GITFLOW](imagenes/gitflow.png.png)
+![GITFLOW](images/gitflow.png.png)
 
 Un flujo de trabajo (workflow) en Git es un conjunto de reglas, prácticas y formas de organización que permiten trabajar de manera ordenada con las ramas de un proyecto. Este flujo define cómo se crean, utilizan y combinan las ramas, facilitando la gestión de versiones, el desarrollo de nuevas funcionalidades y la corrección de errores sin afectar el trabajo principal.
 
@@ -634,7 +634,7 @@ Además, un workflow ayuda a que cualquier persona pueda adaptarse fácilmente a
 
 #### ¿CÓMO FUNCIONA GITFLOW?
 
-![¿CÓMO FUNCIONA GITFLOW?](imagenes/funcionamiento_gitflow.png)
+![¿CÓMO FUNCIONA GITFLOW?](images/funcionamiento_gitflow.png)
 
 main: 
 ```bash
@@ -672,13 +672,13 @@ Una vez corregido el problema, la rama hotfix se fusiona nuevamente tanto en mai
 ```
 
 RESUMIDO SERIA ...
-![class summary](imagenes/resumen.png.png)
+![class summary](images/resumen.png.png)
 
 ## Clase 6
 
 ### Flujo de trabajo y sincronización de ramas en Git
 
-![git merge](imagenes/git-merge.webp)
+![git merge](images/git-merge.webp)
 
 #### git merge 
 
@@ -753,7 +753,7 @@ Después de corregir los conflictos, se debe ejecutar: <span style="color :orang
 para finalizar la fusion
 
 
-![](imagenes/where-conflicts.webp)
+![](images/where-conflicts.webp)
 
 #### Ramas 
 
